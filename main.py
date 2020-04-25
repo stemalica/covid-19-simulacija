@@ -1,29 +1,43 @@
 from crtac import *
-import numpy as np
+from pygame.locals import *
+import boja
+from random import random
 import time
+import sys
+
+print("Veličina ekrana: " + str(size_x) + "," + str(size_y))
 
 # moze ici od 20 do min(size_z, size_y)
-razmak = 120
+razmak = 40
+sansa_zaraze = 0.9 * 20 / razmak
+print("Šansa zaraze: ", sansa_zaraze)
 
-broj_ljudi_kolona = int((size_y - razmak) / (razmak + 5)) + 1
-broj_ljudi_red = int((size_x - razmak) / razmak) + 1
-ljudi = [[Color.blue for j in range(broj_ljudi_kolona)]
-         for i in range(broj_ljudi_red)]
+# 1. Prebroji koliko ljudi možemo prikazati na ekranu. Nakon toga isprintaj koliko ih može biti
 
-def crtaj_ljude():
-    for i in range(broj_ljudi_red):
-        for j in range(broj_ljudi_kolona):
-            crtaj_osobu(i * razmak + razmak / 2,
-                        j * (razmak + 5) + razmak / 2, ljudi[i][j])
+# 2. Kreirajte listu "ljudi" s odgovarajućim brojem ljudi gdje svaki ima
 
-print(ljudi)
+# 3. Napiši funkciju `crtaj_ljude` koja će prikazati sve ljude horizontalno na sredini ekrana
 
-i = 0
+# 4. Postavi jednog covjeka za izvor koji je u sredini ekrana
+
+# 5. Širenje zaraze. Napiši funkciju `sirenje_zaraze()` koja će proći po svim ljudima i provjeriti jesu li zaraženi.
+# Ako je, pozvati funckiju `sirenje_zaraze_covjek`
+
+# 6. Napiši funkciju za provjeru broja zaraženih.
+
+# 7. Dodatak. Trenutno ne vidimo tko je zadnji zaraženi i ljudi koji su trenutnog dana bili zaraženi mogu istog dana
+# zaraziti druge. Potrebno dodati jedan međukorak s kojim se pamti ljude koji su trenutno zaraženi (boje.narancasta)
+
+# 8. Domaća zadaća. Ispisati dan kada su svi ljudi zaraženi samo jednom.
+dan = 0
 while True:
-    prikazi_tekst(str(i))
-    crtaj_ljude()
-    i = i + 1
-    # ljudi[i%broj_ljudi_red][0] = Color.green
+    # prikazi_tekst("Dan: " + str(dan), "Zaraženi: " + str(broj_zarazenih()))
+    # crtaj_ljude()
+    # osvjezi_zarazeni()
+    # sirenje_zaraze()
+
+    dan = dan + 1
+
     time.sleep(1)
     for event in pygame.event.get():
         if event.type == QUIT:
