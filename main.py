@@ -12,23 +12,48 @@ razmak = 40
 sansa_zaraze = 0.9 * 20 / razmak
 print("Šansa zaraze: ", sansa_zaraze)
 
-# 1. Prebroji koliko ljudi možemo prikazati na ekranu. Nakon toga isprintaj koliko ih može biti
+# Zadatak 1. Broj ljudi
+# Prebrojimo koliko ljudi možemo prikazati na ekranu.
+# Nakon toga isprintaj koliko ih može biti. Spremimo broj u varijablu "broj_ljudi"
 
-# 2. Kreirajte listu "ljudi" s odgovarajućim brojem ljudi gdje svaki ima
+# Zadatak 2. Lista ljudi
+# Kreirajte listu "ljudi" s odgovarajućim brojem ljudi gdje svaki ima element ima vrijednost "boja.zelena"
 
-# 3. Napiši funkciju `crtaj_ljude` koja će prikazati sve ljude horizontalno na sredini ekrana
+# Zadatak 3. Crtanje ljudi
+# Napiši funkciju "crtaj_ljude()" koja će prikazati sve ljude horizontalno na sredini ekrana.
 
-# 4. Postavi jednog covjeka za izvor koji je u sredini ekrana
 
-# 5. Širenje zaraze. Napiši funkciju `sirenje_zaraze()` koja će proći po svim ljudima i provjeriti jesu li zaraženi.
-# Ako je, pozvati funckiju `sirenje_zaraze_covjek`
+# Zadatak 4. Izvor zaraze
+# Postavite središnjeg čovjeka kao izvora zaraze tako da mu postavite boju na "boja.crvena"
 
-# 6. Napiši funkciju za provjeru broja zaraženih.
 
-# 7. Dodatak. Trenutno ne vidimo tko je zadnji zaraženi i ljudi koji su trenutnog dana bili zaraženi mogu istog dana
-# zaraziti druge. Potrebno dodati jedan međukorak s kojim se pamti ljude koji su trenutno zaraženi (boje.narancasta)
+def sirenje_zaraze_covjek(i):
+    if i - 1 >= 0:
+        if ljudi[i - 1] == boja.zelena and random() > 1 - sansa_zaraze:
+            ljudi[i - 1] = boja.narancasta
+    if i + 1 < len(ljudi):
+        if ljudi[i + 1] == boja.zelena and random() > 1 - sansa_zaraze:
+            ljudi[i + 1] = boja.narancasta
 
-# 8. Domaća zadaća. Ispisati dan kada su svi ljudi zaraženi samo jednom.
+
+def osvjezi_zarazeni():
+    for i in range(broj_ljudi):
+        if ljudi[i] == boja.narancasta:
+            ljudi[i] = boja.crvena
+
+
+# Zadatak 5. Širenje zaraze
+# Napiši funkciju "sirenje_zaraze()" koja će proći po svim ljudima i provjeriti jesu li zaraženi.
+# Ako jesu, pozvati funckiju "sirenje_zaraze_covjek(i)". Argument funkcije "sirenje_zaraze_covjek()" je indeks
+# zaraženog čovjeka.
+
+
+# Zadatak 6. Broj zaraženih
+# Napiši funkciju "broj_zarazenih()" koje će prebrojati koliko ljudi je zaraženo.
+
+
+# Zadatak 7. Dan kada su svi zaraženi
+# Samo jednom ispisati dan kada su svi ljudi zaraženi.
 dan = 0
 while True:
     # prikazi_tekst("Dan: " + str(dan), "Zaraženi: " + str(broj_zarazenih()))
