@@ -1,6 +1,6 @@
 import pygame
 import os
-from boje import *
+import boje
 
 size_x = 640
 size_y = 480
@@ -10,21 +10,20 @@ pygame.init()
 screen = pygame.display.set_mode(size)
 font = pygame.font.SysFont("comicsansms", 50)
 
-screen.fill(Boja.bijela.value)
+screen.fill(boje.bijela)
 
 
-def crtaj_osobu(x, y, color_t):
-    color = color_t.value
+def crtaj_osobu(x, y, boja):
     # head
-    pygame.draw.ellipse(screen, color, [0 + x, 0 + y, 10, 10], 0)
+    pygame.draw.ellipse(screen, boja, [0 + x, 0 + y, 10, 10], 0)
     # body
-    pygame.draw.line(screen, color, [4 + x, 17 + y], [4 + x, 7 + y], 2)
+    pygame.draw.line(screen, boja, [4 + x, 17 + y], [4 + x, 7 + y], 2)
     # legs
-    pygame.draw.line(screen, color, [4 + x, 17 + y], [9 + x, 27 + y], 2)
-    pygame.draw.line(screen, color, [4 + x, 17 + y], [-1 + x, 27 + y], 2)
+    pygame.draw.line(screen, boja, [4 + x, 17 + y], [9 + x, 27 + y], 2)
+    pygame.draw.line(screen, boja, [4 + x, 17 + y], [-1 + x, 27 + y], 2)
     # arms
-    pygame.draw.line(screen, color, [4 + x, 7 + y], [8 + x, 17 + y], 2)
-    pygame.draw.line(screen, color, [4 + x, 7 + y], [0 + x, 17 + y], 2)
+    pygame.draw.line(screen, boja, [4 + x, 7 + y], [8 + x, 17 + y], 2)
+    pygame.draw.line(screen, boja, [4 + x, 7 + y], [0 + x, 17 + y], 2)
 
 
 def prikazi_tekst(text_lijevo, text_desno):
