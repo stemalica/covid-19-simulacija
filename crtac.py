@@ -1,6 +1,6 @@
 import pygame
 import os
-import boje
+import boja
 
 size_x = 640
 size_y = 480
@@ -10,7 +10,7 @@ pygame.init()
 screen = pygame.display.set_mode(size)
 font = pygame.font.SysFont("comicsansms", 50)
 
-screen.fill(boje.bijela)
+screen.fill(boja.bijela)
 
 
 def crtaj_osobu(x, y, boja):
@@ -31,11 +31,11 @@ def prikazi_tekst(text_lijevo, text_desno):
 
     text_object_1 = font.render(text_lijevo, True, (0, 128, 0))
     screen.blit(text_object_1,
-                (40, 480 - text_object_1.get_height()))
+                (40, size_y - text_object_1.get_height() - 5))
 
     text_object_2 = font.render(text_desno, True, (0, 128, 0))
     screen.blit(text_object_2,
-                (300, 480 - text_object_2.get_height()))
+                (300, size_y - text_object_2.get_height() - 5))
 
 
 # Reset the output of screen to be nice
