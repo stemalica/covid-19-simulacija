@@ -1,30 +1,16 @@
 import pygame
-from pygame.locals import *
-import sys
 import os
+from boje import *
 
-from enum import Enum
-
-
-class Color(Enum):
-    red = (255, 0, 0)
-    green = (0, 255, 0)
-    blue = (0, 0, 255)
-    darkBlue = (0, 0, 128)
-    white = (255, 255, 255)
-    black = (0, 0, 0)
-    pink = (255, 200, 200)
-    yellow = (255, 255, 0)
-
-
-pygame.init()
 size_x = 640
 size_y = 480
 size = (size_x, size_y)
+
+pygame.init()
 screen = pygame.display.set_mode(size)
 font = pygame.font.SysFont("comicsansms", 50)
 
-screen.fill(Color.white.value)
+screen.fill(Boja.bijela.value)
 
 
 def crtaj_osobu(x, y, color_t):
@@ -51,13 +37,6 @@ def prikazi_tekst(text_lijevo, text_desno):
     text_object_2 = font.render(text_desno, True, (0, 128, 0))
     screen.blit(text_object_2,
                 (300, 480 - text_object_2.get_height()))
-
-
-def prikazi_tekst_desno(text):
-    text_object = font.render(text, True, (0, 128, 0))
-    screen.fill((255, 255, 255))
-    screen.blit(text_object,
-                (500, 480 - text_object.get_height()))
 
 
 # Reset the output of screen to be nice
