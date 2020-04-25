@@ -12,22 +12,30 @@ razmak = 40
 sansa_zaraze = 0.9 * 20 / razmak
 print("Šansa zaraze: ", sansa_zaraze)
 
-# 1. Prebroji koliko ljudi možemo prikazati na ekranu. Nakon toga isprintaj koliko ih može biti
+# Zadatak 1. Broj ljudi
+# Prebrojimo koliko ljudi možemo prikazati na ekranu.
+# Nakon toga isprintaj koliko ih može biti. Spremimo broj u varijablu "broj_ljudi"
 broj_ljudi = int(size_x / razmak)
+print(broj_ljudi)
 
-# 2. Kreirajte listu "ljudi" s odgovarajućim brojem ljudi gdje svaki ima
+# Zadatak 2. Lista ljudi
+# Kreirajte listu "ljudi" s odgovarajućim brojem ljudi gdje svaki ima element ima vrijednost "boja.zelena"
 ljudi = [boja.zelena] * broj_ljudi
 
 
-# 3. Napiši funkciju crtaj_ljude koja će prikazati sve ljude horizontalno na sredini ekrana
+# Zadatak 3. Crtanje ljudi
+# Napiši funkciju "crtaj_ljude()" koja će prikazati sve ljude horizontalno na sredini ekrana.
 def crtaj_ljude():
     for i in range(broj_ljudi):
-        crtaj_osobu(i * razmak + razmak / 2.0, size_y / 2.0, ljudi[i])
+        x = i * razmak + razmak / 2
+        y = size_y / 2
+        crtaj_osobu(x, y, ljudi[i])
 
 
-# 4. Postavi jednog covjeka za izvor koji je u sredini ekrana
-izvor_pozicija = int(broj_ljudi / 2 - 1)
-ljudi[izvor_pozicija] = boja.crvena
+# Zadatak 4. Izvor zaraze
+# Postavite središnjeg čovjeka kao izvora zaraze tako da mu postavite boju na "boja.crvena"
+izvor_zaraze = int(broj_ljudi / 2) - 1
+ljudi[izvor_zaraze] = boja.crvena
 
 
 def sirenje_zaraze_covjek(i):
@@ -39,15 +47,24 @@ def sirenje_zaraze_covjek(i):
             ljudi[i + 1] = boja.narancasta
 
 
-# 5. Širenje zaraze. Napiši funkciju `sirenje_zaraze()` koja će proći po svim ljudima i provjeriti jesu li zaraženi.
-# Ako je, pozvati funckiju `sirenje_zaraze_covjek`
+def osvjezi_zarazeni():
+    for i in range(broj_ljudi):
+        if ljudi[i] == boja.narancasta:
+            ljudi[i] = boja.crvena
+
+
+# Zadatak 5. Širenje zaraze
+# Napiši funkciju "sirenje_zaraze()" koja će proći po svim ljudima i provjeriti jesu li zaraženi.
+# Ako jesu, pozvati funckiju "sirenje_zaraze_covjek(i)". Argument funkcije "sirenje_zaraze_covjek()" je indeks
+# zaraženog čovjeka.
 def sirenje_zaraze():
     for i in range(broj_ljudi):
         if ljudi[i] == boja.crvena:
             sirenje_zaraze_covjek(i)
 
 
-# 6. Napiši funkciju za provjeru broja zaraženih.
+# Zadatak 6. Broj zaraženih
+# Napiši funkciju "broj_zarazenih()" koje će prebrojati koliko ljudi je zaraženo.
 def broj_zarazenih():
     zarazeni = 0
     for i in range(broj_ljudi):
@@ -56,14 +73,8 @@ def broj_zarazenih():
     return zarazeni
 
 
-# 7. Dodatak. Trenutno ne vidimo tko je zadnji zaraženi i ljudi koji su trenutnog dana bili zaraženi mogu istog dana
-# zaraziti druge. Potrebno dodati jedan međukorak s kojim se pamti ljude koji su trenutno zaraženi (boje.narancasta)
-def osvjezi_zarazeni():
-    for i in range(broj_ljudi):
-        if ljudi[i] == boja.narancasta:
-            ljudi[i] = boja.crvena
-
-
+# Zadatak 7. Dan kada su svi zaraženi
+# Samo jednom ispisati dan kada su svi ljudi zaraženi.
 dan = 0
 svi_zarazeni = False
 while True:
@@ -82,5 +93,6 @@ while True:
     pygame.display.update()
 
     if broj_zarazenih() == broj_ljudi and not svi_zarazeni:
-        print("Svi ljudi su zaraženi u " + str(dan) + " dana.")
+        print("Dan kada su svi zarazeni:", dan)
+        print("Brzina zaraze:", broj_ljudi / dan, " ljudi po danu")
         svi_zarazeni = True
