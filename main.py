@@ -5,17 +5,21 @@ from random import random
 import time
 import sys
 
-print("Veličina ekrana: " + str(size_x) + "," + str(size_y))
+print("Sirina ekrana:", sirina, "m")
+print("Visina ekrana:", visina, "m")
 
-# moze ici od 20 do min(size_z, size_y)
-razmak = 40
-sansa_zaraze = 0.9 * 20 / razmak
-print("Šansa zaraze: ", sansa_zaraze)
+# Razmak u metrima
+razmak = 1
+print("Razmak medu ljudima:", razmak, "m")
+sansa_zaraze = 0.45 / razmak
+if razmak >= 2:
+    sansa_zaraze = 0
+print("Sansa zaraze: ", sansa_zaraze)
 
 # Zadatak 1. Broj ljudi
 # Prebrojimo koliko ljudi možemo prikazati na ekranu.
 # Nakon toga isprintaj koliko ih može biti. Spremimo broj u varijablu "broj_ljudi"
-broj_ljudi = int(size_x / razmak)
+broj_ljudi = int(sirina / razmak)
 print(broj_ljudi)
 
 # Zadatak 2. Lista ljudi
@@ -28,7 +32,7 @@ ljudi = [boja.zelena] * broj_ljudi
 def crtaj_ljude():
     for i in range(broj_ljudi):
         x = i * razmak + razmak / 2
-        y = size_y / 2
+        y = visina / 2
         crtaj_osobu(x, y, ljudi[i])
 
 
@@ -94,5 +98,5 @@ while True:
 
     if broj_zarazenih() == broj_ljudi and not svi_zarazeni:
         print("Dan kada su svi zarazeni:", dan)
-        print("Brzina zaraze:", broj_ljudi / dan, " ljudi po danu")
+        print("Brzina zaraze:", broj_ljudi / dan, " ljudi po danu.")
         svi_zarazeni = True
