@@ -5,19 +5,25 @@ from random import random
 import time
 import sys
 
-print("Veličina ekrana: " + str(size_x) + "," + str(size_y))
+print("Sirina ekrana:", sirina, "m")
+print("Visina ekrana:", visina, "m")
 
-# moze ici od 20 do min(size_z, size_y)
-razmak = 40
-sansa_zaraze = 0.9 * 20 / razmak
-print("Šansa zaraze: ", sansa_zaraze)
+# Razmak u metrima
+razmak = 1
+print("Razmak medu ljudima:", razmak, "m")
+sansa_zaraze = 0.45 / razmak
+if razmak >= 2:
+    sansa_zaraze = 0
+print("Sansa zaraze: ", sansa_zaraze)
 
 # Zadatak 1. Broj ljudi
 # Prebrojimo koliko ljudi možemo prikazati na ekranu.
 # Nakon toga isprintaj koliko ih može biti. Spremimo broj u varijablu "broj_ljudi"
 
+
 # Zadatak 2. Lista ljudi
 # Kreirajte listu "ljudi" s odgovarajućim brojem ljudi gdje svaki ima element ima vrijednost "boja.zelena"
+
 
 # Zadatak 3. Crtanje ljudi
 # Napiši funkciju "crtaj_ljude()" koja će prikazati sve ljude horizontalno na sredini ekrana.
@@ -44,7 +50,7 @@ def osvjezi_zarazeni():
 
 # Zadatak 5. Širenje zaraze
 # Napiši funkciju "sirenje_zaraze()" koja će proći po svim ljudima i provjeriti jesu li zaraženi.
-# Ako jesu, pozvati funckiju "sirenje_zaraze_covjek(i)". Argument funkcije "sirenje_zaraze_covjek()" je indeks
+# Ako jesu, pozvati funkciju "sirenje_zaraze_covjek(i)". Argument funkcije "sirenje_zaraze_covjek()" je indeks
 # zaraženog čovjeka.
 
 

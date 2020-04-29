@@ -2,9 +2,14 @@ import pygame
 import os
 import boja
 
-size_x = 640
-size_y = 480
-size = (size_x, size_y)
+sirina_pixeli = 640
+visina_pixeli = 480
+broj_pixela_u_metru = 32
+
+sirina = sirina_pixeli / broj_pixela_u_metru
+visina = visina_pixeli / broj_pixela_u_metru
+
+size = (sirina_pixeli, visina_pixeli)
 
 pygame.init()
 screen = pygame.display.set_mode(size)
@@ -13,7 +18,10 @@ font = pygame.font.SysFont("comicsansms", 50)
 screen.fill(boja.bijela)
 
 
-def crtaj_osobu(x, y, boja):
+def crtaj_osobu(x_m, y_m, boja):
+    # Pretvori metre u pixele
+    x = x_m * broj_pixela_u_metru
+    y = y_m * broj_pixela_u_metru
     # head
     pygame.draw.ellipse(screen, boja, [0 + x, 0 + y, 10, 10], 0)
     # body
@@ -31,11 +39,11 @@ def prikazi_tekst(text_lijevo, text_desno):
 
     text_object_1 = font.render(text_lijevo, True, (0, 128, 0))
     screen.blit(text_object_1,
-                (40, size_y - text_object_1.get_height() - 5))
+                (60, visina_pixeli - text_object_1.get_height() - 5))
 
     text_object_2 = font.render(text_desno, True, (0, 128, 0))
     screen.blit(text_object_2,
-                (300, size_y - text_object_2.get_height() - 5))
+                (320, visina_pixeli - text_object_2.get_height() - 5))
 
 
 # Reset the output of screen to be nice
